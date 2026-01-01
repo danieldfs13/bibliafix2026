@@ -475,3 +475,309 @@ document.addEventListener('DOMContentLoaded', function() {
     generateQRCode();
     restoreAudioState();
 });
+
+// ============================================
+// GALERIA DE DESENHOS
+// ============================================
+
+// Array com os desenhos bíblicos
+const drawings = [
+    {
+        id: 1,
+        title: "Adão e Eva",
+        description: "A criação do primeiro homem e da primeira mulher",
+        imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 2,
+        title: "A Arca de Noé",
+        description: "Noé constrói uma arca para salvar os animais",
+        imageUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 3,
+        title: "José do Egito",
+        description: "A história do jovem José e sua túnica",
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 4,
+        title: "Moisés e o Mar Vermelho",
+        description: "Deus abre o mar para salvar seu povo",
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 5,
+        title: "Davi e Golias",
+        description: "Um pequeno pastor vence o gigante filisteu",
+        imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 6,
+        title: "Daniel na Cova dos Leões",
+        description: "Daniel é protegido por Deus por sua fé",
+        imageUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 7,
+        title: "Jonas e a Baleia",
+        description: "Jonas aprende sobre obediência e perdão",
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
+    },
+    {
+        id: 8,
+        title: "O Nascimento de Jesus",
+        description: "O nascimento do Salvador em Belém",
+        imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
+    }
+];
+
+let currentDrawingId = null;
+
+// Inicializar galeria de desenhos
+function initializeDrawingsGallery() {
+    const gallery = document.getElementById('drawings-gallery');
+    if (!gallery) return;
+    
+    gallery.innerHTML = '';
+    
+    drawings.forEach(drawing => {
+        const drawingCard = document.createElement('div');
+        drawingCard.className = 'drawing-thumbnail';
+        drawingCard.innerHTML = `
+            <img src="${drawing.imageUrl}" alt="${drawing.title}">
+            <div class="drawing-thumbnail-overlay">
+                <button onclick="viewDrawing(${drawing.id})">👁️ Visualizar</button>
+            </div>
+        `;
+        gallery.appendChild(drawingCard);
+    });
+}
+
+// Visualizar desenho
+function viewDrawing(drawingId) {
+    const drawing = drawings.find(d => d.id === drawingId);
+    if (drawing) {
+        currentDrawingId = drawingId;
+        document.getElementById('drawing-image').src = drawing.downloadUrl;
+        document.getElementById('drawing-modal').style.display = 'flex';
+        
+        // Incrementar estatísticas
+        incrementDrawingsViewed();
+    }
+}
+
+// Fechar modal de desenho
+function closeDrawingModal() {
+    document.getElementById('drawing-modal').style.display = 'none';
+}
+
+// Download do desenho
+function downloadDrawing() {
+    if (currentDrawingId) {
+        const drawing = drawings.find(d => d.id === currentDrawingId);
+        if (drawing) {
+            const link = document.createElement('a');
+            link.href = drawing.downloadUrl;
+            link.download = `${drawing.title}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
+}
+
+// ============================================
+// CONTADOR DE ACESSOS E ESTATÍSTICAS
+// ============================================
+
+const ADMIN_PASSWORD = "admin123"; // Senha do admin (você pode mudar)
+
+// Inicializar contador de acessos
+function initializeVisitorCounter() {
+    let stats = getStats();
+    
+    // Incrementar visitantes totais
+    stats.totalVisitors++;
+    
+    // Verificar se é um novo dia
+    const today = new Date().toDateString();
+    if (stats.lastVisitDate !== today) {
+        stats.lastVisitDate = today;
+        stats.todayVisitors = 1;
+    } else {
+        stats.todayVisitors++;
+    }
+    
+    saveStats(stats);
+}
+
+// Obter estatísticas do localStorage
+function getStats() {
+    const stats = localStorage.getItem('bibliaflix_stats');
+    if (stats) {
+        return JSON.parse(stats);
+    } else {
+        return {
+            totalVisitors: 0,
+            todayVisitors: 0,
+            storiesWatched: 0,
+            favoritesMarked: 0,
+            lastVisitDate: new Date().toDateString()
+        };
+    }
+}
+
+// Salvar estatísticas no localStorage
+function saveStats(stats) {
+    localStorage.setItem('bibliaflix_stats', JSON.stringify(stats));
+}
+
+// Incrementar histórias assistidas
+function incrementStoriesWatched() {
+    let stats = getStats();
+    stats.storiesWatched++;
+    saveStats(stats);
+}
+
+// Incrementar desenhos visualizados
+function incrementDrawingsViewed() {
+    let stats = getStats();
+    stats.storiesWatched++;
+    saveStats(stats);
+}
+
+// Incrementar favoritos marcados
+function incrementFavoritesMarked() {
+    let stats = getStats();
+    stats.favoritesMarked++;
+    saveStats(stats);
+}
+
+// ============================================
+// PAINEL ADMINISTRATIVO
+// ============================================
+
+// Mostrar login do admin
+function showAdminLogin() {
+    document.getElementById('admin-login-modal').style.display = 'flex';
+}
+
+// Fechar login do admin
+function closeAdminLogin() {
+    document.getElementById('admin-login-modal').style.display = 'none';
+    document.getElementById('admin-password').value = '';
+    document.getElementById('admin-error').style.display = 'none';
+}
+
+// Validar senha do admin
+function validateAdminPassword() {
+    const password = document.getElementById('admin-password').value;
+    
+    if (password === ADMIN_PASSWORD) {
+        closeAdminLogin();
+        openAdminPanel();
+    } else {
+        document.getElementById('admin-error').style.display = 'block';
+        document.getElementById('admin-password').value = '';
+    }
+}
+
+// Abrir painel de admin
+function openAdminPanel() {
+    updateAdminStats();
+    document.getElementById('admin-panel').style.display = 'flex';
+}
+
+// Fechar painel de admin
+function closeAdminPanel() {
+    document.getElementById('admin-panel').style.display = 'none';
+}
+
+// Atualizar estatísticas no painel
+function updateAdminStats() {
+    const stats = getStats();
+    
+    document.getElementById('total-visitors').textContent = stats.totalVisitors;
+    document.getElementById('today-visitors').textContent = stats.todayVisitors;
+    document.getElementById('stories-watched').textContent = stats.storiesWatched;
+    document.getElementById('favorites-marked').textContent = stats.favoritesMarked;
+}
+
+// Resetar contador de visitantes
+function resetVisitorCounter() {
+    if (confirm('Tem certeza que deseja resetar o contador de visitantes? Esta ação não pode ser desfeita.')) {
+        let stats = getStats();
+        stats.totalVisitors = 0;
+        stats.todayVisitors = 0;
+        stats.storiesWatched = 0;
+        stats.favoritesMarked = 0;
+        saveStats(stats);
+        updateAdminStats();
+        alert('✅ Contador resetado com sucesso!');
+    }
+}
+
+// Exportar estatísticas
+function exportStats() {
+    const stats = getStats();
+    const exportData = {
+        ...stats,
+        exportDate: new Date().toLocaleString('pt-BR'),
+        siteUrl: window.location.href
+    };
+    
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `bibliaflix_stats_${new Date().getTime()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    alert('✅ Dados exportados com sucesso!');
+}
+
+// Fechar modais ao clicar fora
+window.addEventListener('click', function(event) {
+    const drawingModal = document.getElementById('drawing-modal');
+    const adminLoginModal = document.getElementById('admin-login-modal');
+    
+    if (event.target === drawingModal) {
+        closeDrawingModal();
+    }
+    if (event.target === adminLoginModal) {
+        closeAdminLogin();
+    }
+});
+
+// Atualizar inicialização
+const originalDOMContentLoaded = document.addEventListener;
+document.addEventListener('DOMContentLoaded', function() {
+    initializeDrawingsGallery();
+    initializeVisitorCounter();
+    generateQRCode();
+    restoreAudioState();
+}, { once: true });
+
+// Se o documento já foi carregado
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeDrawingsGallery();
+        initializeVisitorCounter();
+    });
+} else {
+    initializeDrawingsGallery();
+    initializeVisitorCounter();
+}

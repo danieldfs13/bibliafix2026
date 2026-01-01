@@ -334,26 +334,71 @@
     <section id="desenhos" class="content-section">
         <div class="container">
             <h2 class="section-title">🎨 Desenhos para Colorir</h2>
-            <div class="drawings-container">
-                <div class="drawing-card" onclick="showDrawingProduction()">
-                    <div class="drawing-icon">🖍️</div>
-                    <h3>Desenhos Bíblicos</h3>
-                    <p>Desenhos para imprimir e colorir com as crianças</p>
-                    <button class="drawing-btn">Acessar Desenhos</button>
-                </div>
+            <p style="text-align: center; color: #ddd; margin-bottom: 30px;">Escolha um desenho para visualizar, imprimir e colorir com sua família!</p>
+            <div class="drawings-gallery" id="drawings-gallery">
+                <!-- Galeria será preenchida por JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Modal de Produção -->
-    <div id="production-modal" class="modal">
-        <div class="modal-content production-modal-content">
-            <span class="close-btn" onclick="closeProductionModal()">&times;</span>
-            <div class="production-message">
-                <h2>🚀 Em Produção</h2>
-                <p>Querido(a), esta seção está sendo preparada com muito carinho para você e sua família!</p>
-                <p>Em breve, teremos lindos desenhos bíblicos prontos para imprimir e colorir.</p>
-                <p>Volte em breve! 😊</p>
+    <!-- Modal de Visualização de Desenho -->
+    <div id="drawing-modal" class="modal">
+        <div class="modal-content drawing-modal-content">
+            <span class="close-btn" onclick="closeDrawingModal()">&times;</span>
+            <div class="drawing-viewer">
+                <img id="drawing-image" src="" alt="Desenho para colorir" class="drawing-image">
+                <div class="drawing-actions">
+                    <button onclick="downloadDrawing()" class="download-btn">📥 Baixar para Imprimir</button>
+                    <p style="font-size: 0.9rem; color: #999; margin-top: 10px;">Clique com botão direito e selecione "Salvar imagem como" para fazer download</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de Acesso ao Painel Adm (Canto inferior direito) -->
+    <div class="admin-access-btn" onclick="showAdminLogin()" title="Painel de Administração">⚙️</div>
+
+    <!-- Modal de Login do Admin -->
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content admin-login-content">
+            <span class="close-btn" onclick="closeAdminLogin()">&times;</span>
+            <h2>🔐 Painel de Administração</h2>
+            <p>Digite a senha para acessar o painel:</p>
+            <input type="password" id="admin-password" placeholder="Senha" class="admin-password-input">
+            <button onclick="validateAdminPassword()" class="admin-login-btn">Entrar</button>
+            <p id="admin-error" style="color: #ff6b6b; margin-top: 10px; display: none;">Senha incorreta!</p>
+        </div>
+    </div>
+
+    <!-- Painel de Administração -->
+    <div id="admin-panel" class="admin-panel" style="display: none;">
+        <div class="admin-panel-header">
+            <h2>📊 Painel de Administração</h2>
+            <button onclick="closeAdminPanel()" class="admin-close-btn">✕</button>
+        </div>
+        <div class="admin-panel-content">
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3>👥 Visitantes Totais</h3>
+                    <p class="stat-value" id="total-visitors">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>📅 Visitantes Hoje</h3>
+                    <p class="stat-value" id="today-visitors">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>🎬 Histórias Assistidas</h3>
+                    <p class="stat-value" id="stories-watched">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>❤️ Favoritos Marcados</h3>
+                    <p class="stat-value" id="favorites-marked">0</p>
+                </div>
+            </div>
+            <div class="admin-actions">
+                <button onclick="resetVisitorCounter()" class="admin-action-btn reset-btn">🔄 Resetar Contador</button>
+                <button onclick="exportStats()" class="admin-action-btn export-btn">📥 Exportar Dados</button>
+                <button onclick="closeAdminPanel()" class="admin-action-btn close-btn">Fechar Painel</button>
             </div>
         </div>
     </div>
