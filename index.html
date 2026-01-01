@@ -22,8 +22,12 @@
                     <li><a href="#antigo-testamento" class="nav-link">Antigo Testamento</a></li>
                     <li><a href="#novo-testamento" class="nav-link">Novo Testamento</a></li>
                     <li><a href="#favoritos" class="nav-link">Favoritos</a></li>
+                    <li><a href="#desenhos" class="nav-link">Desenhos para Colorir</a></li>
                 </ul>
             </nav>
+            <div class="audio-toggle">
+                <button id="audio-btn" class="audio-btn" onclick="toggleGlobalAudio()" title="Ligar/Desligar Música Gospel">🔊 Música Gospel</button>
+            </div>
         </div>
     </header>
 
@@ -326,6 +330,69 @@
         </div>
     </section>
 
+    <!-- Desenhos para Colorir -->
+    <section id="desenhos" class="content-section">
+        <div class="container">
+            <h2 class="section-title">🎨 Desenhos para Colorir</h2>
+            <div class="drawings-container">
+                <div class="drawing-card" onclick="showDrawingProduction()">
+                    <div class="drawing-icon">🖍️</div>
+                    <h3>Desenhos Bíblicos</h3>
+                    <p>Desenhos para imprimir e colorir com as crianças</p>
+                    <button class="drawing-btn">Acessar Desenhos</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Produção -->
+    <div id="production-modal" class="modal">
+        <div class="modal-content production-modal-content">
+            <span class="close-btn" onclick="closeProductionModal()">&times;</span>
+            <div class="production-message">
+                <h2>🚀 Em Produção</h2>
+                <p>Querido(a), esta seção está sendo preparada com muito carinho para você e sua família!</p>
+                <p>Em breve, teremos lindos desenhos bíblicos prontos para imprimir e colorir.</p>
+                <p>Volte em breve! 😊</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Compartilhamento -->
+    <section class="share-section">
+        <div class="container">
+            <div class="share-card">
+                <h3>📱 Compartilhe com sua Família e Amigos</h3>
+                <p>Ajude outras famílias a conhecer as histórias bíblicas! Compartilhe o Bíblia Flix nas redes sociais.</p>
+                <div class="share-buttons">
+                    <button class="share-btn whatsapp" onclick="shareOnWhatsApp()" title="Compartilhar no WhatsApp">
+                        <span>💬 WhatsApp</span>
+                    </button>
+                    <button class="share-btn instagram" onclick="shareOnInstagram()" title="Compartilhar no Instagram">
+                        <span>📷 Instagram</span>
+                    </button>
+                    <button class="share-btn facebook" onclick="shareOnFacebook()" title="Compartilhar no Facebook">
+                        <span>👍 Facebook</span>
+                    </button>
+                </div>
+                <div class="qr-code-section">
+                    <h4>📲 Escaneie o QR Code</h4>
+                    <img id="qr-code" src="" alt="QR Code do Bíblia Flix" class="qr-code">
+                    <p>Ou copie o link:</p>
+                    <div class="link-copy">
+                        <input type="text" id="site-link" value="https://danieldfs13.github.io/bibliafix2026/" readonly>
+                        <button onclick="copyLink()" class="copy-link-btn">Copiar Link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player de Áudio Global -->
+    <audio id="global-audio" style="display: none;">
+        <source src="https://www.youtube.com/watch?v=xvGSK2t7ucA" type="audio/mpeg">
+    </audio>
+
     <!-- Seção de Feedback -->
     <section class="feedback-section">
         <div class="container">
@@ -350,6 +417,7 @@
             <div class="support-card">
                 <h3>💝 Apoie Este Projeto</h3>
                 <p>Se este projeto abençoa sua família e seus filhos, você pode apoiar para que ele continue gratuito e alcance mais crianças.</p>
+                <p style="font-size: 14px; color: #ccc; margin-top: 10px; font-style: italic;">"Mais bem-aventurado é dar do que receber." - Atos 20:35</p>
                 <div class="pix-info">
                     <p><strong>Chave PIX:</strong></p>
                     <div class="pix-key">
@@ -388,6 +456,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=2026010117"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js?v=2026010118"></script>
 </body>
 </html>

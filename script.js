@@ -361,3 +361,117 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
+// Áudio Global Gospel 24h
+let isAudioPlaying = false;
+const audioBtn = document.getElementById('audio-btn');
+
+function toggleGlobalAudio() {
+    const audioPlayer = document.getElementById('global-audio');
+    
+    if (!isAudioPlaying) {
+        // Criar um iframe para tocar a música do YouTube
+        const audioContainer = document.createElement('div');
+        audioContainer.id = 'global-audio-container';
+        audioContainer.style.display = 'none';
+        audioContainer.innerHTML = '<iframe id="gospel-player" width="100%" height="0" src="https://www.youtube.com/embed/xvGSK2t7ucA?autoplay=1&rel=0&modestbranding=1&controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        
+        if (!document.getElementById('global-audio-container')) {
+            document.body.appendChild(audioContainer);
+        }
+        
+        isAudioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioBtn.textContent = '🔊 Música Gospel (Ativa)';
+        localStorage.setItem('bibliaFlixAudioPlaying', 'true');
+    } else {
+        const container = document.getElementById('global-audio-container');
+        if (container) {
+            container.remove();
+        }
+        
+        isAudioPlaying = false;
+        audioBtn.classList.remove('playing');
+        audioBtn.textContent = '🔊 Música Gospel';
+        localStorage.setItem('bibliaFlixAudioPlaying', 'false');
+    }
+}
+
+// Restaurar estado do áudio ao carregar a página
+function restoreAudioState() {
+    const wasPlaying = localStorage.getItem('bibliaFlixAudioPlaying') === 'true';
+    if (wasPlaying) {
+        toggleGlobalAudio();
+    }
+}
+
+// Modal de Produção
+function showDrawingProduction() {
+    const productionModal = document.getElementById('production-modal');
+    productionModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductionModal() {
+    const productionModal = document.getElementById('production-modal');
+    productionModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Fechar modal ao clicar fora
+window.addEventListener('click', function(event) {
+    const productionModal = document.getElementById('production-modal');
+    if (event.target == productionModal) {
+        closeProductionModal();
+    }
+});
+
+// Gerar QR Code
+function generateQRCode() {
+    const siteUrl = 'https://danieldfs13.github.io/bibliafix2026/';
+    const qrCodeContainer = document.getElementById('qr-code');
+    
+    if (qrCodeContainer && qrCodeContainer.src === '') {
+        // Usar API de QR Code gratuita
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(siteUrl)}`;
+        qrCodeContainer.src = qrCodeUrl;
+    }
+}
+
+// Compartilhamento em Redes Sociais
+function shareOnWhatsApp() {
+    const message = encodeURIComponent('🙏 Olá! Descobri um site incrível chamado Bíblia Flix com histórias bíblicas animadas para crianças! Vem conhecer: https://danieldfs13.github.io/bibliafix2026/ 📖✨');
+    window.open(`https://wa.me/?text=${message}`, '_blank');
+}
+
+function shareOnInstagram() {
+    const message = '🙏 Bíblia Flix - Histórias Bíblicas para Crianças! Histórias animadas e narrações especiais. Confira: https://danieldfs13.github.io/bibliafix2026/ 📖✨ #BíbliaFlix #HistóriasBíblicas #CriançasEmFé';
+    alert('Para compartilhar no Instagram, copie o texto abaixo e compartilhe em sua bio ou stories:\n\n' + message);
+    navigator.clipboard.writeText(message);
+}
+
+function shareOnFacebook() {
+    const url = 'https://danieldfs13.github.io/bibliafix2026/';
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+}
+
+function copyLink() {
+    const link = document.getElementById('site-link');
+    link.select();
+    document.execCommand('copy');
+    
+    const btn = document.querySelector('.copy-link-btn');
+    const originalText = btn.textContent;
+    btn.textContent = '✅ Copiado!';
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+    }, 2000);
+}
+
+// Inicializar QR Code quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    generateQRCode();
+    restoreAudioState();
+});
