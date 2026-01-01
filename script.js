@@ -121,9 +121,16 @@ function openStoryModal(storyId) {
     videoTitle.textContent = story.title;
     videoDescription.textContent = story.description;
     
-    // Carregar vídeo do YouTube no iframe do modal
-    const embedUrl = `https://www.youtube.com/embed/${story.youtubeId}?autoplay=1&rel=0&modestbranding=1`;
+    // Carregar vídeo do YouTube no iframe do modal com autoplay
+    const embedUrl = `https://www.youtube.com/embed/${story.youtubeId}?autoplay=1&mute=1&rel=0&modestbranding=1&controls=1&fs=1`;
     videoFrame.src = embedUrl;
+    
+    // Garantir que o iframe tenha os atributos necessários para autoplay
+    videoFrame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    videoFrame.setAttribute('allowFullscreen', 'true');
+    videoFrame.setAttribute('autoplay', 'true');
+    videoFrame.setAttribute('muted', 'true');
+    videoFrame.setAttribute('playsinline', 'true');
     
     // Marcar como assistida
     watchProgress[storyId] = 100;
