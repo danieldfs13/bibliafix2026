@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bíblia Flix - Histórias Bíblicas para Crianças. Assista a animações coloridas e narrações especiais das melhores histórias da Bíblia.">
+    <meta name="keywords" content="histórias bíblicas, crianças, animações, educação infantil, bíblia">
+    <title>Bíblia Flix - Histórias Bíblicas para Crianças</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">📖 Bíblia Flix</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#inicio" class="nav-link active">Início</a></li>
+                    <li><a href="#antigo-testamento" class="nav-link">Antigo Testamento</a></li>
+                    <li><a href="#novo-testamento" class="nav-link">Novo Testamento</a></li>
+                    <li><a href="#favoritos" class="nav-link">Favoritos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Player de Louvores 24h -->
+    <div class="louvor-player-btn" onclick="toggleLouvorPlayer()" title="Louvores 24h">
+        🎵
+    </div>
+    <div id="louvor-player" class="louvor-player" style="display: none;">
+        <div class="louvor-player-header">
+            <h3>🎵 Louvores 24h</h3>
+            <button class="louvor-close" onclick="toggleLouvorPlayer()">✕</button>
+        </div>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/xvGSK2t7ucA?autoplay=0&rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p style="text-align: center; font-size: 12px; color: #ccc; margin-top: 10px;">Louvores para a família 24 horas</p>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Histórias Bíblicas para Crianças</h1>
+            <p class="hero-subtitle">Descubra as mais belas histórias da Bíblia em animações coloridas e narrações especiais para crianças</p>
+            <button class="hero-btn" onclick="scrollToSection('antigo-testamento')">
+                ▶️ Começar a Assistir
+            </button>
+        </div>
+        <div class="hero-image">
+            <img src="365_historias_biblicas.jpg" alt="365 Histórias Bíblicas" class="hero-img">
+        </div>
+    </section>
+
+    <!-- Versículo do Dia -->
+    <section class="daily-verse">
+        <div class="container">
+            <div class="verse-card">
+                <h3>📖 Versículo do Dia</h3>
+                <p id="daily-verse-text">"Até aqui nos ajudou o Senhor" - 1 Samuel 7:12</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Antigo Testamento -->
+    <section id="antigo-testamento" class="content-section">
+        <div class="container">
+            <h2 class="section-title">📜 Antigo Testamento</h2>
+            
+            <!-- Gênesis -->
+            <div class="book-section" data-book="Gênesis">
+                <h3 class="book-title">📖 Livro de Gênesis</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="adao-eva" data-book="Gênesis">
+                        <div class="story-image">
+                            <img src="adao_eva_animacao.png" alt="Adão e Eva no Jardim do Éden">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Adão e Eva no Jardim do Éden</h3>
+                            <p class="story-description">A criação do primeiro homem e da primeira mulher por Deus</p>
+                            <span class="story-duration">8 min</span>
+                            <span class="story-book">Gênesis</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+
+                    <div class="story-card" data-story="noe" data-book="Gênesis">
+                        <div class="story-image">
+                            <img src="arca_noe_animacao.png" alt="A Arca de Noé">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">A Arca de Noé</h3>
+                            <p class="story-description">Noé constrói uma grande arca para salvar os animais do dilúvio</p>
+                            <span class="story-duration">10 min</span>
+                            <span class="story-book">Gênesis</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+
+                    <div class="story-card" data-story="jose" data-book="Gênesis">
+                        <div class="story-image">
+                            <img src="jose_egito_animacao.png" alt="José do Egito">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">José do Egito</h3>
+                            <p class="story-description">A história do jovem José e sua túnica de muitas cores</p>
+                            <span class="story-duration">11 min</span>
+                            <span class="story-book">Gênesis</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Êxodo -->
+            <div class="book-section" data-book="Êxodo">
+                <h3 class="book-title">📖 Livro de Êxodo</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="moises" data-book="Êxodo">
+                        <div class="story-image">
+                            <img src="moises_mar_vermelho_animacao.png" alt="Moisés e o Mar Vermelho">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Moisés e o Mar Vermelho</h3>
+                            <p class="story-description">Como Deus abriu o mar para salvar seu povo do Egito</p>
+                            <span class="story-duration">8 min</span>
+                            <span class="story-book">Êxodo</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1 Samuel -->
+            <div class="book-section" data-book="1 Samuel">
+                <h3 class="book-title">📖 Livro de 1 Samuel</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="davi" data-book="1 Samuel">
+                        <div class="story-image">
+                            <img src="davi_golias_animacao.png" alt="Davi e Golias">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Davi e Golias</h3>
+                            <p class="story-description">Como um pequeno pastor venceu o gigante filisteu com fé em Deus</p>
+                            <span class="story-duration">7 min</span>
+                            <span class="story-book">1 Samuel</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daniel -->
+            <div class="book-section" data-book="Daniel">
+                <h3 class="book-title">📖 Livro de Daniel</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="daniel" data-book="Daniel">
+                        <div class="story-image">
+                            <img src="daniel_leoes_animacao.png" alt="Daniel na Cova dos Leões">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Daniel na Cova dos Leões</h3>
+                            <p class="story-description">Daniel é protegido por Deus por causa de sua fé inabalável</p>
+                            <span class="story-duration">9 min</span>
+                            <span class="story-book">Daniel</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jonas -->
+            <div class="book-section" data-book="Jonas">
+                <h3 class="book-title">📖 Livro de Jonas</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="jonas" data-book="Jonas">
+                        <div class="story-image">
+                            <img src="jonas_baleia_animacao.png" alt="Jonas e a Baleia">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Jonas e a Baleia</h3>
+                            <p class="story-description">Jonas aprende sobre obediência a Deus e perdão</p>
+                            <span class="story-duration">7 min</span>
+                            <span class="story-book">Jonas</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Novo Testamento -->
+    <section id="novo-testamento" class="content-section">
+        <div class="container">
+            <h2 class="section-title">⭐ Novo Testamento</h2>
+
+            <!-- Lucas -->
+            <div class="book-section" data-book="Lucas">
+                <h3 class="book-title">📖 Evangelho de Lucas</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="nascimento-jesus" data-book="Lucas">
+                        <div class="story-image">
+                            <img src="nascimento_jesus_animacao.png" alt="O Nascimento de Jesus">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">O Nascimento de Jesus</h3>
+                            <p class="story-description">A história mais linda: o nascimento do Salvador em Belém</p>
+                            <span class="story-duration">9 min</span>
+                            <span class="story-book">Lucas</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcos -->
+            <div class="book-section" data-book="Marcos">
+                <h3 class="book-title">📖 Evangelho de Marcos</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="jesus-criancas" data-book="Marcos">
+                        <div class="story-image">
+                            <img src="jesus_criancas_animacao.png" alt="Jesus e as Crianças">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Jesus e as Crianças</h3>
+                            <p class="story-description">Jesus mostra seu amor especial pelas crianças</p>
+                            <span class="story-duration">6 min</span>
+                            <span class="story-book">Marcos</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- João -->
+            <div class="book-section" data-book="João">
+                <h3 class="book-title">📖 Evangelho de João</h3>
+                <div class="stories-grid">
+                    <div class="story-card" data-story="multiplicacao-paes" data-book="João">
+                        <div class="story-image">
+                            <img src="multiplicacao_paes_animacao.png" alt="Multiplicação dos Pães e Peixes">
+                            <div class="play-overlay">
+                                <div class="play-button">▶️</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">Multiplicação dos Pães e Peixes</h3>
+                            <p class="story-description">Jesus alimenta cinco mil pessoas com apenas cinco pães e dois peixes</p>
+                            <span class="story-duration">8 min</span>
+                            <span class="story-book">João</span>
+                        </div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Favoritos -->
+    <section id="favoritos" class="content-section">
+        <div class="container">
+            <h2 class="section-title">❤️ Minhas Histórias Favoritas</h2>
+            <div id="favorites-grid" class="stories-grid">
+                <p style="text-align: center; color: #999; padding: 40px;">Nenhuma história favoritada ainda. Clique no coração para adicionar!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Feedback -->
+    <section class="feedback-section">
+        <div class="container">
+            <h2>💬 Deixe seu Feedback</h2>
+            <p>Sua opinião é importante para melhorar este projeto!</p>
+            <form id="feedback-form" action="https://formspree.io/f/mgovoydn" method="POST">
+                <input type="text" name="name" placeholder="Seu nome" required>
+                <input type="email" name="email" placeholder="Seu e-mail" required>
+                <textarea name="message" placeholder="Sua mensagem..." required></textarea>
+                <input type="hidden" name="_next" value="https://danieldfs13.github.io/bibliafix2026-/">
+                <button type="submit">Enviar Feedback</button>
+            </form>
+            <div id="feedback-response" style="display: none; margin-top: 15px; padding: 10px; background: #4CAF50; color: white; border-radius: 5px; text-align: center;">
+                ✅ Obrigado! Seu feedback foi enviado com sucesso!
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Apoio -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-card">
+                <h3>💝 Apoie Este Projeto</h3>
+                <p>Se este projeto abençoa sua família e seus filhos, você pode apoiar para que ele continue gratuito e alcance mais crianças.</p>
+                <div class="pix-info">
+                    <p><strong>Chave PIX:</strong></p>
+                    <div class="pix-key">
+                        <span id="pix-key-text">31994680477</span>
+                        <button onclick="copyPixKey()" class="copy-btn">Copiar Chave</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="video-container">
+                <iframe id="story-video" width="100%" height="500" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2 id="video-title"></h2>
+                <p id="video-description"></p>
+                <div class="video-controls">
+                    <button class="fav-btn" id="modal-favorite-btn" onclick="toggleFavoriteFromModal()">🤍 Adicionar aos Favoritos</button>
+                    <button class="share-btn" onclick="shareStory()">📤 Compartilhar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Bíblia Flix. Histórias Bíblicas para Crianças. Todos os direitos reservados.</p>
+            <p>Desenvolvido com ❤️ para abençoar famílias</p>
+            <p>Visitantes: <span id="visit-counter">0</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2026010117"></script>
+</body>
+</html>
