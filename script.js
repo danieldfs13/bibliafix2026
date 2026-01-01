@@ -483,57 +483,57 @@ document.addEventListener('DOMContentLoaded', function() {
 const drawings = [
     {
         id: 1,
-        title: "Adão e Eva",
-        description: "A criação do primeiro homem e da primeira mulher",
-        imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
-        downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
+        title: "Adão e Eva no Jardim do Éden",
+        description: "Gênesis 1:27 - Deus criou o homem à sua imagem",
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 2,
         title: "A Arca de Noé",
-        description: "Noé constrói uma arca para salvar os animais",
-        imageUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=500&fit=crop",
-        downloadUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&h=1500&fit=crop"
+        description: "Gênesis 6:14 - Noé construiu a arca conforme Deus mandou",
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 3,
         title: "José do Egito",
-        description: "A história do jovem José e sua túnica",
+        description: "Gênesis 37:3 - José tinha uma túnica de muitas cores",
         imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
         downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 4,
         title: "Moisés e o Mar Vermelho",
-        description: "Deus abre o mar para salvar seu povo",
+        description: "Êxodo 14:21 - Deus abriu o mar com um vento forte",
         imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
         downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 5,
         title: "Davi e Golias",
-        description: "Um pequeno pastor vence o gigante filisteu",
+        description: "1 Samuel 17:45 - Vou a ti em nome do Senhor",
         imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
         downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
     },
     {
         id: 6,
         title: "Daniel na Cova dos Leões",
-        description: "Daniel é protegido por Deus por sua fé",
+        description: "Daniel 6:22 - Meu Deus enviou o seu anjo e fechou a boca dos leões",
         imageUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=500&fit=crop",
         downloadUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&h=1500&fit=crop"
     },
     {
         id: 7,
         title: "Jonas e a Baleia",
-        description: "Jonas aprende sobre obediência e perdão",
+        description: "Jonas 1:17 - O Senhor preparou um grande peixe para engolir Jonas",
         imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
         downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 8,
         title: "O Nascimento de Jesus",
-        description: "O nascimento do Salvador em Belém",
+        description: "Lucas 2:11 - Nasceu-vos hoje na cidade de Davi um Salvador",
         imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
         downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
     }
