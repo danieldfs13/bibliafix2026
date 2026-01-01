@@ -360,24 +360,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-
-// Áudio Global Gospel 24h
+// Alternar áudio global
 let isAudioPlaying = false;
-const audioBtn = document.getElementById('audio-btn');
 
 function toggleGlobalAudio() {
-    const audioPlayer = document.getElementById('global-audio');
+    const audioBtn = document.getElementById('audio-btn');
     
     if (!isAudioPlaying) {
-        // Criar um iframe para tocar a música do YouTube
-        const audioContainer = document.createElement('div');
-        audioContainer.id = 'global-audio-container';
-        audioContainer.style.display = 'none';
-        audioContainer.innerHTML = '<iframe id="gospel-player" width="100%" height="0" src="https://www.youtube.com/embed/xvGSK2t7ucA?autoplay=1&rel=0&modestbranding=1&controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-        
-        if (!document.getElementById('global-audio-container')) {
+        // Criar um container visível para o player de áudio
+        let audioContainer = document.getElementById('global-audio-container');
+        if (!audioContainer) {
+            audioContainer = document.createElement('div');
+            audioContainer.id = 'global-audio-container';
+            audioContainer.style.position = 'fixed';
+            audioContainer.style.bottom = '20px';
+            audioContainer.style.right = '20px';
+            audioContainer.style.width = '300px';
+            audioContainer.style.zIndex = '9999';
+            audioContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            audioContainer.style.padding = '10px';
+            audioContainer.style.borderRadius = '10px';
+            audioContainer.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.3)';
+            audioContainer.innerHTML = '<div style="color: #fff; font-size: 12px; margin-bottom: 8px; text-align: center;">🎵 Música Gospel 24h</div><iframe id="gospel-player" width="100%" height="80" src="https://www.youtube.com/embed/xvGSK2t7ucA?autoplay=1&rel=0&modestbranding=1&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 5px;"></iframe>';
             document.body.appendChild(audioContainer);
+        } else {
+            audioContainer.style.display = 'block';
         }
         
         isAudioPlaying = true;
@@ -387,7 +394,7 @@ function toggleGlobalAudio() {
     } else {
         const container = document.getElementById('global-audio-container');
         if (container) {
-            container.remove();
+            container.style.display = 'none';
         }
         
         isAudioPlaying = false;
@@ -485,8 +492,8 @@ const drawings = [
         id: 1,
         title: "Adão e Eva no Jardim do Éden",
         description: "Gênesis 1:27 - Deus criou o homem à sua imagem",
-        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
-        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&h=1500&fit=crop"
     },
     {
         id: 2,
@@ -513,15 +520,15 @@ const drawings = [
         id: 5,
         title: "Davi e Golias",
         description: "1 Samuel 17:45 - Vou a ti em nome do Senhor",
-        imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
-        downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 6,
         title: "Daniel na Cova dos Leões",
         description: "Daniel 6:22 - Meu Deus enviou o seu anjo e fechou a boca dos leões",
-        imageUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=500&fit=crop",
-        downloadUrl: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&h=1500&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     },
     {
         id: 7,
@@ -534,8 +541,8 @@ const drawings = [
         id: 8,
         title: "O Nascimento de Jesus",
         description: "Lucas 2:11 - Nasceu-vos hoje na cidade de Davi um Salvador",
-        imageUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&h=500&fit=crop",
-        downloadUrl: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&h=1500&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=400&h=500&fit=crop",
+        downloadUrl: "https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?w=1200&h=1500&fit=crop"
     }
 ];
 
